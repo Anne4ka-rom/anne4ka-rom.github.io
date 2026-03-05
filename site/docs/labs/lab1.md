@@ -153,6 +153,8 @@ git push
 - "Update structure: create dir labs with 3 labs" - создала отдельно папку с лабами для всех лаб и обновила структуру проекта
   
 - "Update file projects: add current project" - добавила проект статического сайта в текущие
+  
+- "Update list of good commits in lab1.md" - обновляю список осознанных коммитов в первой лабе
 ```
 ### Ссылки:
 - **Ссылка на репозиторий:** [https://github.com/Anne4ka-rom/Anne4ka-rom.github.io](https://github.com/Anne4ka-rom/Anne4ka-rom.github.io)
