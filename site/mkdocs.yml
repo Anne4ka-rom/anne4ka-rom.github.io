@@ -1,1 +1,40 @@
-site_name: My Docs
+site_name: Портфолио Романовой Анны
+site_description: Портфолио Python-разработчика, содержащее мой опыт, проекты и контакты
+site_author: Анна Романова
+repo_url: https://github.com/Anne4ka-rom/Anne4ka-rom.github.io
+
+theme:
+  name: material
+  language: ru
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Переключить на тёмную тему
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Переключить на светлую тему
+
+nav:
+  - Главная: index.md
+  - Об авторе: about.md
+  - Лабораторные работы:
+    - Лабораторная работа №1: labs/lab1.md
+    - Лабораторная работа №2: labs/lab2.md
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - admonition
+  - footnotes
+  - toc:
+      permalink: true
