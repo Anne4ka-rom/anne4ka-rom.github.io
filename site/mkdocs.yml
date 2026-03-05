@@ -18,8 +18,8 @@ theme:
         icon: material/toggle-switch-off-outline
         name: Переключить на тёмную тему
     - scheme: slate
-      primary: indigo
-      accent: indigo
+      primary: light blue
+      accent: light blue
       toggle:
         icon: material/toggle-switch
         name: Переключить на светлую тему
