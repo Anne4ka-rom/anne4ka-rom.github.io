@@ -826,8 +826,7 @@ touch<span class="w"> </span>.gitignore
 <div class="highlight"><pre><span></span><code>mkdocs<span class="w"> </span>new<span class="w"> </span>site
 <span class="nb">cd</span><span class="w"> </span>site
 </code></pre></div></li>
-<li>
-<p>Сделала в mkdocs.yml nav и прописала тему
+<li>Сделала в mkdocs.yml nav и прописала тему
 <div class="highlight"><pre><span></span><code>site_name: Портфолио Романовой Анны
 site_description: Портфолио Python-разработчика, содержащее мой опыт, проекты и контакты
 site_author: Анна Романова
@@ -868,13 +867,13 @@ markdown_extensions:
   - footnotes
   - toc:
       permalink: true
-</code></pre></div></p>
-</li>
-<li>
-<p>Протестировала сервер локально
+</code></pre></div></li>
+<li>Установка темы
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>mkdocs-material
+</code></pre></div></li>
+<li>Протестировала сервер локально
 <div class="highlight"><pre><span></span><code>mkdocs<span class="w"> </span>serve
-</code></pre></div></p>
-</li>
+</code></pre></div></li>
 <li>Собрала структуру сайта с помощью build
 <div class="highlight"><pre><span></span><code>mkdocs<span class="w"> </span>build<span class="w"> </span>--site-dir<span class="w"> </span>../docs
 <span class="nb">cd</span><span class="w"> </span>..
@@ -895,6 +894,16 @@ markdown_extensions:
 <div class="highlight"><pre><span></span><code>- &quot;Add name, topic, nav in mkdocs.yml&quot; - добавление названия, темы, навигации и т.д. в mkdocs.yml
 
 - &quot;Add venv, site/, *pyc, __pycache__ in .gitignore&quot; - добавление виртуальной оболочки, папки с сайтом, скомпилированного кода и байт кода в гитигнор
+
+- &quot;Add file lab1 about static site with mkdocs in dir docs&quot; - создание файла с лабораторной работой №1 и добавление её в статический сайт
+
+- &quot;Delete site/ in .gitignore&quot; - удаление папки сайта из гитигнора
+
+- &quot;Update structure: create dir labs with 3 labs&quot; - создала отдельно папку с лабами для всех лаб и обновила структуру проекта
+
+- &quot;Update file projects: add current project&quot; - добавила проект статического сайта в текущие
+
+- &quot;Update list of good commits in lab1.md&quot; - обновляю список осознанных коммитов в первой лабе
 </code></pre></div>
 <h3 id="_8">Ссылки:<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <ul>
@@ -906,7 +915,7 @@ markdown_extensions:
 <h2 id="_9">Вывод<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <p>В ходе выполнения лабораторной работы я освоила процесс создания статического сайта с помощью генератора MkDocs: настроила виртуальное окружение, установила необходимые зависимости, создала структуру страниц (главная, об авторе, проекты и лабораторные работы) и подключила тему Material с поддержкой светлой и тёмной тем. С помощью Git я инициализировала репозиторий, выполнила коммиты и опубликовала проект на GitHub, после чего настроила GitHub Pages для автоматической публикации сайта из папки <code>/docs</code>. В результате сайт-портфолио стал доступен по адресу <code>https://anne4ka-rom.github.io</code>, а полученные навыки позволят мне в дальнейшем легко добавлять новые лабораторные работы на сайт в течение семестра.</p>
 <hr />
-<p><a href="https://github.com/Anne4ka-rom/anne4ka-rom.github.io/blob/main/index">Вернуться на главную</a></p>
+<p><a href="/index">Вернуться на главную</a></p>
 
 
 
