@@ -1,3 +1,5 @@
+"""Тесты для лабораторной работы"""
+
 import os
 import numpy as np
 
@@ -5,6 +7,7 @@ from main import *
 
 
 def test_create_vector():
+    """Тест создания вектора"""
     v = create_vector()
     assert isinstance(v, np.ndarray)
     assert v.shape == (10,)
@@ -12,6 +15,7 @@ def test_create_vector():
 
 
 def test_create_matrix():
+    """Тест создания матрицы"""
     m = create_matrix()
     assert isinstance(m, np.ndarray)
     assert m.shape == (5, 5)
@@ -19,6 +23,7 @@ def test_create_matrix():
 
 
 def test_reshape_vector():
+    """Тест изменения формы вектора"""
     v = np.arange(10)
     reshaped = reshape_vector(v)
     assert reshaped.shape == (2, 5)
@@ -27,6 +32,7 @@ def test_reshape_vector():
 
 
 def test_vector_add():
+    """Тест сложения векторов"""
     assert np.array_equal(
         vector_add(np.array([1,2,3]), np.array([4,5,6])),
         np.array([5,7,9])
@@ -38,6 +44,7 @@ def test_vector_add():
 
 
 def test_scalar_multiply():
+    """Тест умножения на скаляр"""
     assert np.array_equal(
         scalar_multiply(np.array([1,2,3]), 2),
         np.array([2,4,6])
@@ -45,6 +52,7 @@ def test_scalar_multiply():
 
 
 def test_elementwise_multiply():
+    """Тест поэлементного умножения"""
     assert np.array_equal(
         elementwise_multiply(np.array([1,2,3]), np.array([4,5,6])),
         np.array([4,10,18])
@@ -52,28 +60,33 @@ def test_elementwise_multiply():
 
 
 def test_dot_product():
+    """Тест скалярного произведения"""
     assert dot_product(np.array([1,2,3]), np.array([4,5,6])) == 32
     assert dot_product(np.array([2,0]), np.array([3,5])) == 6
 
 
 def test_matrix_multiply():
+    """Тест умножения матриц"""
     A = np.array([[1,2],[3,4]])
     B = np.array([[2,0],[1,2]])
     assert np.array_equal(matrix_multiply(A,B), A @ B)
 
 
 def test_matrix_determinant():
+    """Тест определителя матрицы"""
     A = np.array([[1,2],[3,4]])
     assert round(matrix_determinant(A),5) == -2.0
 
 
 def test_matrix_inverse():
+    """Тест обратной матрицы"""
     A = np.array([[1,2],[3,4]])
     invA = matrix_inverse(A)
     assert np.allclose(A @ invA, np.eye(2))
 
 
 def test_solve_linear_system():
+    """Тест решения системы уравнений"""
     A = np.array([[2,1],[1,3]])
     b = np.array([1,2])
     x = solve_linear_system(A,b)
@@ -81,7 +94,7 @@ def test_solve_linear_system():
 
 
 def test_load_dataset():
-    # Для теста создадим временный файл
+    """Тест загрузки данных"""
     test_data = "math,physics,informatics\n78,81,90\n85,89,88"
     with open("test_data.csv", "w") as f:
         f.write(test_data)
@@ -94,6 +107,7 @@ def test_load_dataset():
 
 
 def test_statistical_analysis():
+    """Тест статистического анализа"""
     data = np.array([10,20,30])
     result = statistical_analysis(data)
     assert result["mean"] == 20
@@ -102,27 +116,34 @@ def test_statistical_analysis():
 
 
 def test_normalization():
+    """Тест нормализации данных"""
     data = np.array([0,5,10])
     norm = normalize_data(data)
     assert np.allclose(norm, np.array([0,0.5,1]))
 
 
 def test_plot_histogram():
-    # Просто проверяем, что функция не падает
+    """Тест построения гистограммы"""
     data = np.array([1,2,3,4,5])
     plot_histogram(data)
 
 
 def test_plot_heatmap():
+    """Тест построения тепловой карты"""
+
+    import matplotlib
+
+    matplotlib.use('Agg')
     matrix = np.array([[1,0.5],[0.5,1]])
     plot_heatmap(matrix)
 
 
 def test_plot_line():
+    """Тест построения линейного графика"""
     x = np.array([1,2,3])
     y = np.array([4,5,6])
     plot_line(x, y)
 
 
 if __name__ == "__main__":
-    print("Запустите pytest test.py -v для проверки лабораторной работы.")
+    pytest.main([__file__, "-v"])
