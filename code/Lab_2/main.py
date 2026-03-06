@@ -240,7 +240,7 @@ def plot_histogram(data: np.ndarray) -> None:
     plt.hist(data)
 
     plt.xlabel('Оценка')
-    plt.ylabel('Количество студентов')
+    plt.ylabel('Частота')
 
     plt.grid(True, alpha=0.3)
     plt.savefig('plots/histogram.png')
