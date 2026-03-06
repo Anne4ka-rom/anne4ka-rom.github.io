@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from typing import Union, Dict, Any
 
 
 def create_vector() -> np.ndarray:
@@ -71,7 +72,7 @@ def vector_add(a: np.ndarray, b: np.ndarray) -> np.ndarray:
     return a + b
 
 
-def scalar_multiply(vec: np.ndarray, scala: int | float) -> np.ndarray:
+def scalar_multiply(vec: np.ndarray, scala: Union[int, float]) -> np.ndarray:
     """
     Умножение вектора на число
     
@@ -99,7 +100,7 @@ def elementwise_multiply(a: np.ndarray, b: np.ndarray) -> np.ndarray:
     return a * b
 
 
-def dot_product(a: np.ndarray, b: np.ndarray) -> np.ndarray:
+def dot_product(a: np.ndarray, b: np.ndarray) -> Union[float, np.ndarray]:
     """
     Скалярное произведение
     
@@ -131,7 +132,7 @@ def matrix_multiply(a: np.ndarray, b: np.ndarray) -> np.ndarray:
     return np.matmul(a, b)
 
 
-def matrix_determinant(a: np.ndarray) -> np.ndarray:
+def matrix_determinant(a: np.ndarray) -> float:
     """
     Определитель матрицы
 
@@ -175,7 +176,7 @@ def solve_linear_system(a: np.ndarray, b: np.ndarray) -> np.ndarray:
 # 4. СТАТИСТИЧЕСКИЙ АНАЛИЗ
 # ============================================================
 
-def load_dataset(path="data/students_scores.csv"):
+def load_dataset(path: str="data/students_scores.csv") -> np.ndarray:
     """
     Загрузить CSV и вернуть NumPy массив
     
@@ -188,7 +189,7 @@ def load_dataset(path="data/students_scores.csv"):
     return pd.read_csv(path).to_numpy()
 
 
-def statistical_analysis(data):
+def statistical_analysis(data: np.ndarray) -> Dict[str, float]:
     """
     Представьте, что данные — это результаты экзамена по математике.
     Нужно оценить:
@@ -206,10 +207,10 @@ def statistical_analysis(data):
         dict: словарь со статистическими показателями
     """
     return {'mean': np.mean(data), 'median': np.median(data), 'std': np.std(data), 'min': np.min(data), 
-            'max': np.max(data), 'percentile25': np.percentile(data, 25), 'percintale75': np.percentile(data, 75)}
+            'max': np.max(data), 'percentile25': np.percentile(data, 25), 'percentile75': np.percentile(data, 75)}
 
 
-def normalize_data(data):
+def normalize_data(data: np.ndarray) -> np.ndarray:
     """
     Min-Max нормализация
     
@@ -228,65 +229,53 @@ def normalize_data(data):
 # 5. ВИЗУАЛИЗАЦИЯ
 # ============================================================
 
-def plot_histogram(data):
+def plot_histogram(data: np.ndarray) -> None:
     """
     Построить гистограмму распределения оценок по математике
-
-    Изучить:
-    https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.hist.html
     
-    Args:
+    Аргументы:
         data (numpy.ndarray): данные для гистограммы
     """
-    # Подсказка: используйте plt.hist(), добавьте заголовок, подписи осей,
-    # сохраните в папку plots с помощью plt.savefig()
+    plt.figure(figsize=(10, 6))
     plt.hist(data)
-    plt.savefig()
+
+    plt.xlabel('Оценка')
+    plt.ylabel('Количество студентов')
+
+    plt.grid(True, alpha=0.3)
+    plt.savefig('plots/histogram.png')
+    plt.close() 
 
 
-def plot_heatmap(matrix):
+def plot_heatmap(matrix: np.ndarray) -> None:
     """
     Построить тепловую карту корреляции предметов.
-
-    Изучить:
-    https://seaborn.pydata.org/generated/seaborn.heatmap.html
     
-    Args:
+    Аргументы:
         matrix (numpy.ndarray): Матрица корреляции
     """
-    # Подсказка: используйте sns.heatmap(), добавьте заголовок, сохраните
-    pass
+    plt.figure(figsize=(10, 6))
+    sns.heatmap(matrix, annot=True, xticklabels=['Математика', 'Физика', 'Информатика'],
+                yticklabels=['Математика', 'Физика', 'Информатика'])
+    plt.title('Матрица корреляции предметов')
+    plt.savefig('plots/heatmap.png')
+    plt.close()
 
 
-def plot_line(x, y):
+def plot_line(x: np.ndarray, y: np.ndarray) -> None:
     """
     Построить график зависимости: студент -> оценка по математике.
-
-    Изучить:
-    https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html
     
-    Args:
+    Аргументы:
         x (numpy.ndarray): Номера студентов
         y (numpy.ndarray): Оценки студентов
     """
-    # Подсказка: используйте plt.plot(), добавьте заголовок, подписи осей,
-    # сохраните график
-    pass
+    plt.plot(x, y)
+    plt.title('Оценки студентов по математике')
+    plt.xlabel('Номер студента')
+    plt.ylabel('Оценка')
+    plt.savefig('plots/line_plot.png')
+    plt.close()
 
 if __name__ == "__main__":
-    print(create_vector())
-    print(create_matrix())
-    print(reshape_vector(np.arange(10,)))
-    print(transpose_matrix(np.array([1, 2, 3, 4, 5])))
-    print(vector_add(np.array([1, 4]), np.array([6, 12])))
-    print(scalar_multiply(np.array([3, 6, 7]), 2))
-    print(elementwise_multiply(np.array([1, 2]), np.array([2, 3])))
-    print(dot_product(np.array([3, 4, 5]), np.array([7, 8, 9])))
-    print(matrix_multiply(np.array([[1, 2], [1, 3], [2, 4]]), np.array([[1, 2, 3], [4, 5, 6]])))
-    print(matrix_determinant(np.array([[2, 5], [4, 5]])))
-    print(matrix_inverse([[1, 8], [2, 3]]))
-    print(solve_linear_system([[2, 3], [4, 5]], [14, 28]))
-    print(load_dataset(path="data/students_scores.csv"))
-    print(statistical_analysis([34, 8, 7]))
-    print(normalize_data([45, 5, 90]))
-    print(plot_histogram("data/students_scores.csv"))
+    print("Запустите pytest test.py -v для проверки лабораторной работы.")
