@@ -186,6 +186,8 @@ def load_dataset(path: str="data/students_scores.csv") -> np.ndarray:
     Возвращает:
         numpy.ndarray: загруженные данные в виде массива
     """
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"Файл {path} не найден")
     return pd.read_csv(path).to_numpy()
 
 
@@ -206,6 +208,8 @@ def statistical_analysis(data: np.ndarray) -> Dict[str, float]:
     Возвращает:
         dict: словарь со статистическими показателями
     """
+    if data.ndim > 1:
+        data = data[:, 0]
     return {'mean': np.mean(data), 'median': np.median(data), 'std': np.std(data), 'min': np.min(data), 
             'max': np.max(data), 'percentile25': np.percentile(data, 25), 'percentile75': np.percentile(data, 75)}
 
@@ -222,7 +226,14 @@ def normalize_data(data: np.ndarray) -> np.ndarray:
     Возвращает:
         numpy.ndarray: нормализованный массив данных в диапазоне [0, 1]
     """
-    return (data - np.min(data)) / (np.max(data) - np.min(data))
+    if data.ndim > 1:
+        data = data[:, 0]
+    
+    min_val = np.min(data)
+    max_val = np.max(data)
+    if max_val - min_val == 0:
+        return np.zeros_like(data)
+    return (data - min_val) / (max_val - min_val)
 
 
 # ============================================================
@@ -236,6 +247,11 @@ def plot_histogram(data: np.ndarray) -> None:
     Аргументы:
         data (numpy.ndarray): данные для гистограммы
     """
+    os.makedirs('plots', exist_ok=True)
+    
+    if data.ndim > 1:
+        data = data[:, 0]
+
     plt.figure(figsize=(10, 6))
     plt.hist(data)
 
@@ -254,6 +270,8 @@ def plot_heatmap(matrix: np.ndarray) -> None:
     Аргументы:
         matrix (numpy.ndarray): Матрица корреляции
     """
+    os.makedirs('plots', exist_ok=True)
+
     plt.figure(figsize=(10, 6))
     sns.heatmap(matrix, annot=True, xticklabels=['Математика', 'Физика', 'Информатика'],
                 yticklabels=['Математика', 'Физика', 'Информатика'])
@@ -270,6 +288,8 @@ def plot_line(x: np.ndarray, y: np.ndarray) -> None:
         x (numpy.ndarray): Номера студентов
         y (numpy.ndarray): Оценки студентов
     """
+    os.makedirs('plots', exist_ok=True)
+    
     plt.plot(x, y)
     plt.title('Оценки студентов по математике')
     plt.xlabel('Номер студента')
