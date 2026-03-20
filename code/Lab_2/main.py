@@ -272,9 +272,18 @@ def plot_heatmap(matrix: np.ndarray) -> None:
     """
     os.makedirs('plots', exist_ok=True)
 
+    n = matrix.shape[0]
+
+    # Автоматически создаём подписи в зависимости от размера
+    if n == 3:
+        labels = ['Математика', 'Физика', 'Информатика']
+    elif n == 2:
+        labels = ['Предмет 1', 'Предмет 2']
+    else:
+        labels = [f'Предмет {i+1}' for i in range(n)]
+
     plt.figure(figsize=(10, 6))
-    sns.heatmap(matrix, annot=True, xticklabels=['Математика', 'Физика', 'Информатика'],
-                yticklabels=['Математика', 'Физика', 'Информатика'])
+    sns.heatmap(matrix, annot=True, xticklabels=labels, yticklabels=labels)
     plt.title('Матрица корреляции предметов')
     plt.savefig('plots/heatmap.png')
     plt.close()
