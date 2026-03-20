@@ -599,6 +599,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#1-numpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Базовые операции с NumPy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -825,12 +836,12 @@
 <h1 id="no2">Лабораторная работа №2<a class="headerlink" href="#no2" title="Permanent link">&para;</a></h1>
 <p><em>Анализ данных с использованием NumPy, Pandas, Matplotlib и Seaborn</em></p>
 <h2 id="_1">Цель работы<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>Освоение основных возможностей библиотек NumPy, Pandas, Matplotlib и Seaborn для обработки и визуализации данных. Получение навыков написания функций с аннотациями типов, документацией и соблюдением стандарта PEP-8.</p>
+<p>Освоить основные возможности библиотек NumPy, Pandas, Matplotlib и Seaborn для обработки и визуализации данных. Получение навыков написания функций с аннотациями типов, документацией и соблюдением стандарта PEP-8.</p>
 <hr />
 <h2 id="_2">Ход выполнения работы<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p><em>С помощью документаций, приложенных к каждой функции были реализованы следующие блоки функций для работы с массивами и датасетами:</em></p>
-<p>### 1. Базовые операции с NumPy
-Были реализованы функции для создания и преобразования массивов:
+<h3 id="1-numpy">1. Базовые операции с NumPy<a class="headerlink" href="#1-numpy" title="Permanent link">&para;</a></h3>
+<p>Были реализованы функции для создания и преобразования массивов:
 - <strong><code>create_vector()</code></strong> - создание вектора от 0 до 9
 - <strong><code>create_matrix()</code></strong> - создание матрицы 5×5 со случайными числами
 - <strong><code>reshape_vector()</code></strong> - изменение формы вектора (10,) → (2, 5)
@@ -1064,12 +1075,15 @@
 <span class="sd">        matrix (numpy.ndarray): Матрица корреляции</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s1">&#39;plots&#39;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-    <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Математика&#39;</span><span class="p">,</span> <span class="s1">&#39;Физика&#39;</span><span class="p">,</span> <span class="s1">&#39;Информатика&#39;</span><span class="p">],</span>
-                <span class="n">yticklabels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Математика&#39;</span><span class="p">,</span> <span class="s1">&#39;Физика&#39;</span><span class="p">,</span> <span class="s1">&#39;Информатика&#39;</span><span class="p">])</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Матрица корреляции предметов&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;plots/heatmap.png&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Математика&#39;</span><span class="p">,</span> <span class="s1">&#39;Физика&#39;</span><span class="p">,</span> <span class="s1">&#39;Информатика&#39;</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Предмет 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Предмет 2&#39;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;Предмет </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">plot_line</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>

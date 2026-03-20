@@ -274,7 +274,6 @@ def plot_heatmap(matrix: np.ndarray) -> None:
 
     n = matrix.shape[0]
 
-    # Автоматически создаём подписи в зависимости от размера
     if n == 3:
         labels = ['Математика', 'Физика', 'Информатика']
     elif n == 2:
