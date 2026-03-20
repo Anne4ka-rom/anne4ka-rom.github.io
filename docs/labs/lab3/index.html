@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#no1" class="md-skip">
+        <a href="#no3" class="md-skip">
           Перейти к содержанию
         </a>
       
@@ -623,9 +623,109 @@
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Ход выполнения работы">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-ssh-" class="md-nav__link">
+    <span class="md-ellipsis">
       
-        <li class="md-nav__item">
+        1. Генерация SSH-ключа
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-sourcecraft" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Добавление публичного ключа на SourceCraft
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Добавление публичного ключа на GitHub
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Клонирование репозитория с GitHub
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-sourcecraft" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Создание пустого репозитория на SourceCraft
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-c-github-sourcecraft" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Привязка локального репозитория c GitHub к SourceCraft
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-sourcecraft" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Отправка кода на SourceCraft
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Проверка результата
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Настройка одновременной отправки в два репозитория
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -635,8 +735,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -644,6 +744,11 @@
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -711,16 +816,60 @@
   
 
 
-<h1 id="no1">Лабораторная работа №1<a class="headerlink" href="#no1" title="Permanent link">&para;</a></h1>
+<h1 id="no3">Лабораторная работа №3<a class="headerlink" href="#no3" title="Permanent link">&para;</a></h1>
+<p><em>Перенос репозитория с GitHub на Yandex SourceCraft через SSH</em></p>
 <h2 id="_1">Цель работы<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>Освоить процесс переноса Git-репозитория с платформы GitHub на платформу Yandex SourceCraft с использованием SSH-аутентификации, а также научиться настраивать локальный репозиторий для работы с несколькими удалёнными репозиториями одновременно.</p>
 <hr />
 <h2 id="_2">Ход выполнения работы<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="1-ssh-">1. Генерация SSH-ключа<a class="headerlink" href="#1-ssh-" title="Permanent link">&para;</a></h3>
+<p>Так как на локальной машине отсутствовали SSH-ключи, была выполнена команда:
+<div class="highlight"><pre><span></span><code>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;моя почта&quot;</span>
+</code></pre></div>
+Ключи сохранены в стандартной директории <code>~/.ssh/</code> (публичный ключ - <code>id_ed25519.pub</code>, приватный - <code>id_ed25519</code>)</p>
+<h3 id="2-sourcecraft">2. Добавление публичного ключа на SourceCraft<a class="headerlink" href="#2-sourcecraft" title="Permanent link">&para;</a></h3>
+<p>Содержимое файла <code>id_ed25519.pub</code> было скопировано и добавлено в веб-интерфейсе SourceCraft в разделе <code>"Доступ" -&gt; "SSH-ключи"</code> . Это необходимо для аутентификации при push-операциях</p>
+<h3 id="3-github">3. Добавление публичного ключа на GitHub<a class="headerlink" href="#3-github" title="Permanent link">&para;</a></h3>
+<p>Для обеспечения доступа к GitHub по SSH публичный ключ был также добавлен в настройках аккаунта GitHub: <code>"Settings" -&gt; "SSH and GPG keys"</code>. В поле <code>"Key"</code> вставлено содержимое файла <code>id_ed25519.pub</code></p>
+<h3 id="4-github">4. Клонирование репозитория с GitHub<a class="headerlink" href="#4-github" title="Permanent link">&para;</a></h3>
+<p>Репозиторий <code>anne4ka-rom.github.io</code> был клонирован на мой компьютер:
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:Anne4ka-rom/anne4ka-rom.github.io.git
+<span class="nb">cd</span><span class="w"> </span>anne4ka-rom.github.io
+</code></pre></div>
+После выполнения первой команды система запросила подтверждение подлинности хоста, т.к. это было первым подключением к GitHub через SSH, поэтому был введён ответ <code>yes</code></p>
+<h3 id="5-sourcecraft">5. Создание пустого репозитория на SourceCraft<a class="headerlink" href="#5-sourcecraft" title="Permanent link">&para;</a></h3>
+<p>На платформе SourceCraft был создан новый репозиторий с именем <code>"mkdocs-portfolio"</code>: <code>"Ваша мастерская" -&gt; "Репозитории" -&gt; "Новый репозиторий" -&gt; "Пустой репозиторий"</code>. Репозиторий был создан без инициализации <code>README</code> и <code>.gitignore</code>, чтобы избежать конфликтов с уже существующей историей коммитов из GitHub</p>
+<h3 id="6-c-github-sourcecraft">6. Привязка локального репозитория c GitHub к SourceCraft<a class="headerlink" href="#6-c-github-sourcecraft" title="Permanent link">&para;</a></h3>
+<p>Локально был изменён URL удалённого репозитория <code>origin</code> на адрес SourceCraft, который был получен в <code>созданном пустом репозитории -&gt; правый верхний угол -&gt; "Клонировать" -&gt; скопировать ссылку SSH</code>:
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>remote<span class="w"> </span>set-url<span class="w"> </span>origin<span class="w"> </span>ssh://ssh.sourcecraft.dev/annirom23/mkdocs-portfolio.git
+</code></pre></div></p>
+<h3 id="7-sourcecraft">7. Отправка кода на SourceCraft<a class="headerlink" href="#7-sourcecraft" title="Permanent link">&para;</a></h3>
+<p>Выполнена отправка всех веток и коммитов:
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>main
+</code></pre></div></p>
+<p>При первом подключении к SourceCraft также потребовалось подтвердить подлинность хоста ответом <code>yes</code></p>
+<h3 id="8">8. Проверка результата<a class="headerlink" href="#8" title="Permanent link">&para;</a></h3>
+<p>В веб-интерфейсе SourceCraft была проверена загрузка всех файлов, истории коммитов и веток - всё перенеслось корректно</p>
+<h3 id="9">9. Настройка одновременной отправки в два репозитория<a class="headerlink" href="#9" title="Permanent link">&para;</a></h3>
+<p>Чтобы иметь возможность пушить изменения сразу и на GitHub, и на SourceCraft, был использован способ с несколькими push-URL для одного remote (GitHub остался основным репозиторием (источником для fetch и pull), но изменения отправляются сразу на обе платформы):
+ Устанавливаем GitHub как основной remote (для fetch/pull)
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>remote<span class="w"> </span>set-url<span class="w"> </span>origin<span class="w"> </span>git@github.com:Anne4ka-rom/anne4ka-rom.github.io.git
+</code></pre></div>
+Добавляем SourceCraft как дополнительный URL для пуша
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>remote<span class="w"> </span>set-url<span class="w"> </span>--add<span class="w"> </span>origin<span class="w"> </span>ssh://ssh.sourcecraft.dev/annirom23/mkdocs-portfolio.git
+</code></pre></div>
+ После этого команда <code>git push origin main</code> отправляет изменения одновременно на обе платформы</p>
 <hr />
-<h2 id="_3">Результат<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="_3">Результат<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Репозиторий успешно перенесён с GitHub на Yandex SourceCraft</li>
+<li>Локальный репозиторий настроен для одновременной работы с двумя удалёнными репозиториями (GitHub и SourceCraft)</li>
+<li>Все данные (коммиты, ветки, файлы) сохранены и доступны на обеих платформах
+Ссылка на репозиторий на SourceCraft: https://sourcecraft.dev/annirom23/mkdocs-portfolio</li>
+</ul>
 <hr />
-<h2 id="_4">Вывод<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<hr />
-<p><a href="/">Вернуться на главную</a></p>
+<h3 id="_4">Вывод<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>В ходе выполнения лабораторной работы были изучены и отработаны на практике процессы генерации и добавления SSH-ключей для аутентификации на различных Git-хостингах (GitHub и SourceCraft), клонирования репозиториев по SSH, изменения удалённого репозитория и переноса кода на новый хостинг. Особое внимание было уделено настройке локального репозитория для одновременной работы с несколькими удалёнными репозиториями с сохранением GitHub в качестве основного источника для получения обновлений. Полученные навыки позволят мне гибко управлять репозиториями, переносить проекты между платформами и обеспечивать резервное копирование кода на нескольких сервисах одновременно, что повышает надёжность хранения и доступность кода.</p>
 
 
 
