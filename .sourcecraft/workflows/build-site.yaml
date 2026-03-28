@@ -21,11 +21,11 @@ workflows:
                 pip install -r requirements.txt
               fi
               
-              echo "🔨 Building site..."
-              cd source
+              echo "Building site..."
+              cd site
               mkdocs build -d ../docs
               
-              echo "✅ Site built successfully"
+              echo "Site built successfully"
               ls -la ../docs
               
       - name: update-release-branch
