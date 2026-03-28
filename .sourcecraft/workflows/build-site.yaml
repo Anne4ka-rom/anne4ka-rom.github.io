@@ -1,0 +1,68 @@
+# .sourcecraft/workflows/build-site.yml
+on:
+  push:
+    branches:
+      - main
+
+workflows:
+  build-and-release:
+    name: Build MkDocs and create release branch
+    tasks:
+      - name: build-site
+        cubes:
+          - name: install-deps-and-build
+            image: docker.io/library/python:3.13-slim
+            script: |
+              echo "Installing dependencies..."
+              pip install --upgrade pip
+              pip install mkdocs mkdocs-material
+              
+              if [ -f requirements.txt ]; then
+                pip install -r requirements.txt
+              fi
+              
+              echo "🔨 Building site..."
+              cd source
+              mkdocs build -d ../docs
+              
+              echo "✅ Site built successfully"
+              ls -la ../docs
+              
+      - name: update-release-branch
+        cubes:
+          - name: configure-git
+            image: docker.io/library/alpine/git:latest
+            script: |
+              git config --global user.name "SourceCraft Bot"
+              git config --global user.email "bot@sourcecraft.dev"
+              git fetch --all
+              
+          - name: create-or-update-release
+            image: docker.io/library/alpine/git:latest
+            script: |
+              echo "Updating release branch..."
+              
+              # Проверяем существование ветки release
+              if git ls-remote --heads origin release | grep -q release; then
+                echo "Branch 'release' exists, updating..."
+                git checkout release
+                git pull origin release
+                git merge main --no-edit || true
+              else
+                echo "Creating new branch 'release'..."
+                git checkout -b release
+              fi
+              
+              # Добавляем docs папку
+              git add docs/
+              
+              # Коммитим, если есть изменения
+              if git diff --staged --quiet; then
+                echo "No changes to commit"
+              else
+                git commit -m "Auto-deploy: $(date '+%Y-%m-%d %H:%M:%S')"
+              fi
+              
+              # Пушим
+              git push origin release
+              echo "Release branch updated"
