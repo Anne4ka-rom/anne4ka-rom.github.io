@@ -8,8 +8,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
       
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -22,7 +28,6 @@ jobs:
           
       - name: Build site
         run: |
-          # mkdocs.yml в корне, а исходники в папке site
           mkdocs build
           
       - name: Create/Update release branch
@@ -31,9 +36,9 @@ jobs:
           git config --global user.email "actions@github.com"
           git fetch --all
           git checkout release || git checkout -b release
-          # Сайт собрался в папку site (если site_dir не указан)
-          # Проверяем, куда собрался сайт
-          ls -la
-          git add site/
+          
+          # Добавляем собранный сайт
+          git add site/ 2>/dev/null || git add docs/ 2>/dev/null || echo "No build folder"
+          
           git commit -m "Auto-build: $(date -u)" || echo "No changes"
           git push origin release --force
