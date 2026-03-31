@@ -68,4 +68,4 @@ git remote set-url --add origin ssh://ssh.sourcecraft.dev/annirom23/mkdocs-portf
 
 ---
 
-[Вернуться на главную](/)
+[Вернуться на главную](../index.md/)

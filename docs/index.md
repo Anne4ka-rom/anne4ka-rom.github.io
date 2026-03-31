@@ -46,4 +46,4 @@
 -  **Email:** [annirom23@yandex.ru](mailto:annirom23@yandex.ru) – для более формальных предложений и результатов проекта
 -  **GitHub:** [github.com/Anne4ka-rom](https://github.com/Anne4ka-rom) – здесь живут мои небольшие школьные или университетские проекты
 
-[Посмотреть мои проекты](/projects) | [Узнать обо мне](/about)
+[Посмотреть мои проекты](projects.md) | [Узнать обо мне](about.md)
