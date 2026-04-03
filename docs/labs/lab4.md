@@ -136,7 +136,7 @@ for threshold in [0.3, 0.5, 0.7]:
 - Выбрана и обоснована модель XGBoost как оптимальное решение для задачи кредитного скоринга
 - Проведён анализ современных алгоритмов классификации на основе научных публикаций и решений Kaggle
 - Составлен пошаговый алгоритм интеграции модели с веб-сервисом на FastAPI/Flask/Django
-**Ссылка на выполненный ipynb-борд:** https://colab.research.google.com/drive/1J0bbA-dGacFeW0G9r1PEW0JyywDbVyW6?usp=sharing
+**Ссылка на выполненный ipynb-борд:** [Перейти в Google Colab](https://colab.research.google.com/drive/1J0bbA-dGacFeW0G9r1PEW0JyywDbVyW6?usp=sharing)
 
 ---
 ## Вывод
