@@ -13,6 +13,7 @@
 ## Теоретическая часть
 ### Статические сайты
 **Статический сайт** - это набор HTML, CSS и JS-файлов, которые генерируются заранее и размещаются на сервере без серверной логики.
+
 **Преимущества:**
 - простота размещения;
 - высокая скорость загрузки;
@@ -20,24 +21,38 @@
 - удобство версионирования.
 ### MkDocs
 **MkDocs** - генератор статических сайтов, ориентированный на документацию проектов и портфолио.
+
 **Основные возможности:**
+
 - генерация сайта из Markdown-файлов;
+
 - гибкая настройка структуры через `mkdocs.yml`;
+
 - поддержка тем оформления;
+
 - локальный сервер для предпросмотра (`mkdocs serve`).
+
 **Документация:**
+
 - [https://www.mkdocs.org/](https://www.mkdocs.org/)
+
 - [https://www.mkdocs.org/user-guide/configuration/](https://www.mkdocs.org/user-guide/configuration/)
+
 - [https://www.mkdocs.org/user-guide/writing-your-docs/](https://www.mkdocs.org/user-guide/writing-your-docs/)
 ### Git и GitHub
 **Git** - распределённая система контроля версий.  
 **GitHub** - облачная платформа для хранения Git-репозиториев и совместной работы.
+
 **Документация:**
+
 - [https://git-scm.com/docs](https://git-scm.com/docs)
+
 - [https://docs.github.com/](https://docs.github.com/)
 ### GitHub Pages
 **GitHub Pages** позволяет публиковать статические сайты напрямую из репозитория. В данной лабораторной работе используется публикация из каталога `/docs` ветки `main`.
+
 **Документация:** 
+
 - [https://docs.github.com/en/pages](https://docs.github.com/en/pages)
 
 ---
@@ -159,6 +174,7 @@ git push
 ### Ссылки:
 - **Ссылка на репозиторий:** [https://github.com/Anne4ka-rom/Anne4ka-rom.github.io](https://github.com/Anne4ka-rom/Anne4ka-rom.github.io)
 - **Ссылка на опубликованный сайт:** [https://anne4ka-rom.github.io](https://anne4ka-rom.github.io)
+
 Сайт доступен, все страницы открываются, навигация работает.
 
 ---
