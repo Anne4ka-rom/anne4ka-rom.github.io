@@ -131,7 +131,7 @@ xgb_model = XGBRegressor(
 ```
 
 **Сравнение результатов моделей XGBoost и Random Forest:**
-Модель | RMSE
+Модель | RMSE |
 |:-----:|:-----:|
 XGBoost | 125958
 Random Forest | 136728
