@@ -10,6 +10,7 @@
 ---
 ## Результат
 
+**Ссылка на выполненный ipynb-борд:** [Перейти в Google Colab](https://colab.research.google.com/drive/1UVuMt23An2cX8_EmK0savYVxq-symEOG?usp=sharing)
 
 ---
 ## Вывод
